@@ -6,4 +6,6 @@ The files are embedded into this repo as hardlinks, e.g.
 
 ```bash
 ln ~/.tmux.conf files/tmux.conf 
+ln ~/.config/nvim/init.lua files/nvim_chad_init.lua
+ln ~/.zshrc files/zshrc
 ```
