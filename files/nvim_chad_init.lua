@@ -39,4 +39,4 @@ vim.schedule(function()
 end)
 
 -- change keymap to exit Terminal
-tnoremap <Esc> <C-\><C-n>
+vim.api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-n>]], { noremap = true, silent = true })
