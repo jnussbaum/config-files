@@ -55,3 +55,9 @@ vim.opt.expandtab = true      -- Use spaces instead of tabs
 vim.opt.tabstop = 4           -- Number of spaces for a tab
 vim.opt.shiftwidth = 4        -- Number of spaces for indentation
 vim.opt.smartindent = true    -- Enable smart indentation
+
+-- When scrolling long files, keep cursor in middle of screen
+vim.opt.scrolloff = 999
+
+-- in visual block mode, allow selecting cells that don't exist
+vim.opt.virtualedit = "block"
