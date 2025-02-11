@@ -13,6 +13,21 @@ fi
 
 
 
+########
+# SDKMAN
+########
+# according to sdkman, this should be at the bottom of the file, 
+# but there are other configs that must go to the bottom more urgently.
+# For the lazy loading, see https://github.com/sdkman/sdkman-cli/issues/977#issuecomment-2127812178
+export SDKMAN_DIR="$HOME/.sdkman"
+sdk() {
+  unset -f sdk
+  [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+  sdk "$@"
+}
+
+
+
 ###############
 # MISCELLANEOUS
 ###############
@@ -105,12 +120,19 @@ eval "$(pyenv init -)"
 
 
 
-#####################################
-# ZSH PLUGIN: ZSH-SYNTAX-HIGHLIGHTING
-#####################################
-# 3rd party plugin, installed with Homebrew, not via Oh My Zsh
-# This must be sourced (and register its hook) after anything else that adds hooks that modify the command-line buffer.  
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+########
+# ZOXIDE
+########
+# https://github.com/ajeetdsouza/zoxide
+function cd() {
+    __zoxide_z "$@"
+}
+
+function cdi() {
+    __zoxide_zi "$@"
+}
+
+eval "$(zoxide init zsh)"
 
 
 
@@ -125,12 +147,21 @@ esac
 # pnpm end
 
 
-########
-# SDKMAN
-########
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+#######
+# ATUIN 
+#######
+. "$HOME/.atuin/bin/env"
+eval "$(atuin init zsh)"
+
+
+
+#####################################
+# ZSH PLUGIN: ZSH-SYNTAX-HIGHLIGHTING
+#####################################
+# 3rd party plugin, installed with Homebrew, not via Oh My Zsh
+# This must be sourced (and register its hook) after anything else that adds hooks that modify the command-line buffer.  
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
 
