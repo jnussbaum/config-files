@@ -1,0 +1,97 @@
+# ~/.zsh_aliases
+
+aliasupdate(){
+  source ~/.zshrc
+}
+
+###########
+# DSP-TOOLS
+###########
+
+export TOOLS_HOME="${HOME}/Desktop/Cloned_GitHub_repos/dsp-tools"
+
+alias dtlog="tail -n 15 -f ~/.dsp-tools/logging.log | bat --paging=never -l log"
+
+cdtls(){
+  cd "${TOOLS_HOME}" 
+}
+
+dtup(){
+  (cdtls
+  dsp-tools start-stack --no-prune)
+}
+
+dtupl(){
+  (cdtls
+  dsp-tools start-stack --no-prune --latest)
+}
+
+dtdwn(){
+  (cdtls
+  dsp-tools stop-stack)
+}
+
+dtrestrt(){
+  (cdtls
+  dtdwn
+  dtup)
+}
+
+dtlint(){
+  (cdtls
+  just mypy || true
+  just darglint)
+}
+
+dtrff(){
+  (cdtls
+  uv run ruff format . && uv run ruff check . --fix --ignore=A002,D101,D102,PLR0913,PLR2004,PLW0603)
+}
+
+dtcreate(){
+    (cdtls
+    dsp-tools create testdata/json-project/test-project-systematic.json)
+}
+
+dtxmlupload(){
+    (cdtls
+    dsp-tools xmlupload testdata/xml-data/test-data-systematic.xml)
+}
+
+
+#########
+# GENERAL
+#########
+
+rff(){
+  ruff format . && ruff check . --fix
+}
+
+gcall() {
+  COMMIT_MESSAGE="${1:-Commit all changes}"
+  git commit -a --no-verify -m "$COMMIT_MESSAGE"
+}
+
+gdiff() {
+  git diff
+}
+
+gpush() {
+  git push
+}
+
+gdiscard() {
+  git checkout -- .
+}
+
+
+##########
+# PERSONAL
+##########
+pla() {
+  pluck + allow "$1"
+}
+
+pls() {
+  pluck export -r | grep "$1"
+}
