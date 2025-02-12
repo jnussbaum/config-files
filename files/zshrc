@@ -34,7 +34,6 @@ sdk() {
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 source ~/.dasch-passwords
 export HOWDOI_SEARCH_ENGINE=duckduckgo
-export PIP_REQUIRE_VIRTUALENV=true
 source /Users/nussbaum/.pluckeye.homebrew.env
 # Homebrew prefers its own curl, installed at /usr/local/bin/curl, but that one doesn't exist.
 export HOMEBREW_CURL_PATH=/usr/bin/curl 
@@ -108,6 +107,20 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+
+
+########
+# PYTHON
+########
+export PIP_REQUIRE_VIRTUALENV=true
+
+python_venv() {
+  [[ -d .venv ]] && source .venv/bin/activate > /dev/null 2>&1
+  [[ ! -d .venv ]] && deactivate > /dev/null 2>&1
+}
+autoload -U add-zsh-hook
+add-zsh-hook chpwd python_venv
+python_venv
 
 
 
