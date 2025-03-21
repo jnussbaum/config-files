@@ -159,6 +159,16 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_DEFAULT_OPTS="--height 40% --tmux bottom,40% --layout reverse --border top --bind 'ctrl-a:reload:eval $FZF_DEFAULT_COMMAND --no-ignore'"
 
 
+
+########################
+# Docker CLI completions
+########################
+fpath=(/Users/nussbaum/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+
+
+
 ######
 # PNPM
 ######
@@ -195,3 +205,4 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 if [[ -n "$ZSH_DEBUGRC" ]]; then
   zprof
 fi
+
