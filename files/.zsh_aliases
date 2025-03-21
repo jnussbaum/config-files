@@ -37,17 +37,6 @@ dtrestrt(){
   dtup)
 }
 
-dtlint(){
-  (cdtls
-  just mypy || true
-  just darglint)
-}
-
-dtrff(){
-  (cdtls
-  uv run ruff format . && uv run ruff check . --fix --ignore=A002,D101,D102,PLR0913,PLR2004,PLW0603)
-}
-
 dtcreate(){
     (cdtls
     dsp-tools create testdata/json-project/test-project-systematic.json)
