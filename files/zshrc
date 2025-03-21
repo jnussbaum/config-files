@@ -18,14 +18,8 @@ fi
 ########
 # according to sdkman, this should be at the bottom of the file, 
 # but there are other configs that must go to the bottom more urgently.
-# For the lazy loading, see https://github.com/sdkman/sdkman-cli/issues/977#issuecomment-2127812178
 export SDKMAN_DIR="$HOME/.sdkman"
-sdk() {
-  unset -f sdk
-  [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh" # -s: file > 0 bytes
-  sdk "$@"
-}
-
+source "$SDKMAN_DIR/bin/sdkman-init.sh" 
 
 
 ###############
