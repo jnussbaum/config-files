@@ -16,6 +16,10 @@ cdtls(){
   cd "${TOOLS_HOME}" 
 }
 
+dt(){
+    "${TOOLS_HOME}/.venv/bin/dsp-tools" "$@"
+}
+
 dtup(){
   (cdtls
   dsp-tools start-stack --no-prune)
