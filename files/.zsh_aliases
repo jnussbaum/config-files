@@ -10,7 +10,7 @@ aliasupdate(){
 
 export TOOLS_HOME="${HOME}/Desktop/Cloned_GitHub_repos/dsp-tools"
 
-alias dtlog="tail -n 15 -f ~/.dsp-tools/logging.log | bat --paging=never -l log"
+alias dtlog="tail -n 15 -f ~/.dsp-tools/logging.log | bat --style=plain --paging=never -l log"
 
 cdtls(){
   cd "${TOOLS_HOME}" 
