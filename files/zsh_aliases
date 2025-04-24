@@ -77,6 +77,13 @@ gdiscard() {
   git checkout -- .
 }
 
+gdelb() {
+    read "confirmation?Delete all local git branches except the current branch, main, and master [y/n]? "
+    if [[ "$confirmation" == "y" ]]; then
+        git branch | egrep -v "(^\*|main|master)" | xargs git branch -d
+    fi
+    }
+
 
 ##########
 # PERSONAL
