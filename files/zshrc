@@ -26,7 +26,7 @@ source "$SDKMAN_DIR/bin/sdkman-init.sh"
 # MISCELLANEOUS
 ###############
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-source ~/.dasch-passwords
+source ~/.credential-loader
 export HOWDOI_SEARCH_ENGINE=duckduckgo
 source /Users/nussbaum/.pluckeye.homebrew.env
 # Homebrew prefers its own curl, installed at /usr/local/bin/curl, but that one doesn't exist.
