@@ -22,6 +22,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 source "$SDKMAN_DIR/bin/sdkman-init.sh" 
 
 
+
 ###############
 # MISCELLANEOUS
 ###############
@@ -32,6 +33,7 @@ source /Users/nussbaum/.pluckeye.homebrew.env
 # Homebrew prefers its own curl, installed at /usr/local/bin/curl, but that one doesn't exist.
 export HOMEBREW_CURL_PATH=/usr/bin/curl 
 source ~/.zsh_aliases
+
 
 
 ###############
@@ -46,7 +48,6 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh  # -f: is regular file (not directory/socket/...)
-
 
 
 
@@ -108,22 +109,31 @@ source $ZSH/oh-my-zsh.sh
 ########
 export PIP_REQUIRE_VIRTUALENV=true
 
+# Hack to allow creating venvs with uv-managed python interpreters installed into ~/.local/bin (see https://github.com/astral-sh/uv/issues/8821):
+export PATH=$(dirname $(realpath $(which python))):$PATH
+
 python_venv() {
-  [[ -d .venv ]] && source .venv/bin/activate > /dev/null 2>&1
-  [[ ! -d .venv ]] && deactivate > /dev/null 2>&1
+  local dir="$PWD"
+  local found_venv=false
+  
+  # Check current directory and parent directories for .venv
+  while [[ "$dir" != "/" ]]; do
+    if [[ -d "$dir/.venv" ]]; then
+      source "$dir/.venv/bin/activate" > /dev/null 2>&1
+      found_venv=true
+      break
+    fi
+    dir="$(dirname "$dir")"
+  done
+  
+  # Deactivate if no venv found
+  if [[ "$found_venv" == false ]]; then
+    deactivate > /dev/null 2>&1
+  fi
 }
 autoload -U add-zsh-hook
 add-zsh-hook chpwd python_venv
 python_venv
-
-
-
-#######
-# PYENV
-#######
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
 
 
