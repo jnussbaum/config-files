@@ -43,13 +43,27 @@ dtrestrt(){
 
 dtcreate(){
     (cdtls
-    dsp-tools create testdata/json-project/test-project-systematic.json)
+    dsp-tools create testdata/json-project/systematic-project-4123.json)
 }
 
 dtxmlupload(){
     (cdtls
-    dsp-tools xmlupload testdata/xml-data/test-data-systematic.xml)
+    dsp-tools xmlupload testdata/xml-data/test-data-systematic-4123.xml)
 }
+
+
+#####################
+# CLAUDE CODE DEV
+#####################
+
+# Start Claude Code in the current directory with the dasch-claude-plugins
+# loaded directly from the local feature-branch checkout, bypassing the cache.
+# Use this alias instead of `claude` when testing plugin changes.
+_DASCH_PLUGINS="${HOME}/Desktop/Cloned_GitHub_repos/dasch-claude-plugins"
+alias cc-dev="claude \
+  --plugin-dir ${_DASCH_PLUGINS}/eng \
+  --plugin-dir ${_DASCH_PLUGINS}/rdu \
+  --plugin-dir ${_DASCH_PLUGINS}/sbe"
 
 
 #########
