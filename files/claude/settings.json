@@ -1,0 +1,188 @@
+{
+  "$schema": "https://www.schemastore.org/claude-code-settings.json",
+  "env": {
+    "PATH": "/usr/local/bin:/Users/nussbaum/.local/bin:/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+    "_ZO_DOCTOR": "0"
+  },
+  "permissions": {
+    "allow": [
+      "Read(~/Desktop/Cloned_GitHub_repos/**)",
+      "Read(**/.claude/**)",
+      "Edit(**/.claude/plans/**)",
+      "Edit(**/.claude/hooks/**)",
+      "Read(~/.dsp-tools/**)",
+      "mcp__mcp-registry__search_mcp_registry",
+      "Bash(ruff:*)",
+      "Bash(mypy:*)",
+      "Bash(mkdocs:*)",
+      "Bash(pytest *)",
+      "Bash(pytest:*)",
+      "Bash(.venv/bin/pytest *)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git commit:*)",
+      "Bash(git checkout:*)",
+      "Bash(git add:*)",
+      "Bash(git rebase:*)",
+      "Bash(git stash:*)",
+      "Bash(git branch:*)",
+      "Bash(git merge:*)",
+      "Bash(git grep:*)",
+      "Bash(gh pr create:*)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr list:*)",
+      "Bash(gh pr merge:*)",
+      "Bash(gh pr checkout:*)",
+      "Bash(gh run view:*)",
+      "Bash(gh issue view:*)",
+      "Bash(gh issue list:*)",
+      "Bash(gh issue create:*)",
+      "Bash(just format)",
+      "Bash(just format:*)",
+      "Bash(just lint)",
+      "Bash(just unittests:*)",
+      "Bash(just integration-tests:*)",
+      "Bash(just ruff-check:*)",
+      "Bash(just ruff-format:*)",
+      "Bash(just mypy:*)",
+      "WebSearch"
+    ],
+    "deny": [
+      "Edit(**/.claude/settings.json)",
+      "Edit(**/.claude/settings.local.json)",
+      "Edit(~/.ssh/**)",
+      "Read(~/.ssh/**)",
+      "Edit(~/.config/**)"
+    ],
+    "defaultMode": "plan",
+    "additionalDirectories": [
+      "/Users/nussbaum/.claude/plans"
+    ]
+  },
+  "model": "claude-opus-4-8[1m]",
+  "skillOverrides": {
+    "find-skills": "user-invocable-only",
+    "grill-with-docs": "user-invocable-only",
+    "handoff": "user-invocable-only"
+  },
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash ~/.claude/hooks/check-claude-docs.sh",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "slm hook user_prompt_rehash 2>/dev/null || true",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "FILE=$(jq -r '.tool_input.file_path // empty' 2>/dev/null); [[ \"$FILE\" == *.py ]] && cd \"$CLAUDE_PROJECT_DIR\" && uv run ruff format \"$FILE\" 2>/dev/null; exit 0",
+            "async": true
+          }
+        ]
+      },
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "slm hook checkpoint 2>/dev/null || true",
+            "timeout": 5
+          }
+        ]
+      },
+      {
+        "matcher": "Bash|Read|Write|Edit|Glob|Grep|Agent|WebFetch|WebSearch|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "slm hook post_tool_outcome 2>/dev/null || true",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "slm hook stop 2>/dev/null || true",
+            "timeout": 10
+          },
+          {
+            "type": "command",
+            "command": "slm hook stop_outcome 2>/dev/null || true",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "slm hook start 2>/dev/null || true",
+            "timeout": 15
+          }
+        ]
+      },
+      {
+        "matcher": "startup|resume",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "git rev-parse --abbrev-ref '@{u}' >/dev/null 2>&1 && git pull --ff-only 2>&1 || true",
+            "timeout": 7
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "eng@dasch-claude-plugins": true,
+    "sbe@dasch-claude-plugins": false,
+    "skill-creator@claude-plugins-official": true,
+    "rdu@dasch-claude-plugins": true,
+    "misc@dasch-claude-plugins": true,
+    "plugin-dev@claude-code-plugins": false,
+    "warp@claude-code-warp": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-code-warp": {
+      "source": {
+        "source": "github",
+        "repo": "warpdotdev/claude-code-warp"
+      }
+    }
+  },
+  "outputStyle": "conciseness-and-STE100",
+  "sandbox": {
+    "enabled": true,
+    "excludedCommands": [
+      "gh *",
+      "git *"
+    ]
+  },
+  "effortLevel": "xhigh",
+  "tui": "fullscreen"
+}
