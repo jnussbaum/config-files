@@ -156,6 +156,17 @@
           }
         ]
       }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
+          }
+        ]
+      }
     ]
   },
   "enabledPlugins": {
@@ -164,7 +175,7 @@
     "skill-creator@claude-plugins-official": true,
     "rdu@dasch-claude-plugins": true,
     "misc@dasch-claude-plugins": true,
-    "plugin-dev@claude-code-plugins": false,
+    "plugin-dev@claude-code-plugins": true,
     "warp@claude-code-warp": true
   },
   "extraKnownMarketplaces": {
