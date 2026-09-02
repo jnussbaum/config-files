@@ -6,7 +6,7 @@
   },
   "permissions": {
     "allow": [
-      "Read(~/Desktop/Cloned_GitHub_repos/**)",
+      "Read(~/repos/**)",
       "Read(**/.claude/**)",
       "Edit(**/.claude/plans/**)",
       "Edit(**/.claude/hooks/**)",
@@ -190,8 +190,10 @@
   "sandbox": {
     "enabled": true,
     "excludedCommands": [
-      "gh *",
-      "git *"
+      "gh *", 
+      "rtk gh *",
+      "git *", 
+      "rtk git *"
     ]
   },
   "effortLevel": "xhigh",
