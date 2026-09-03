@@ -190,9 +190,9 @@
   "sandbox": {
     "enabled": true,
     "excludedCommands": [
-      "gh *", 
+      "gh *",
       "rtk gh *",
-      "git *", 
+      "git *",
       "rtk git *"
     ]
   },
