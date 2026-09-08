@@ -193,8 +193,12 @@
       "gh *",
       "rtk gh *",
       "git *",
-      "rtk git *"
-    ]
+      "rtk git *",
+      "docker *"
+    ],
+    "filesystem": {
+      "allowWrite": ["/opt/homebrew", "~/.cache/nix", "~/Library/Caches/Homebrew"] 
+    }
   },
   "effortLevel": "xhigh",
   "tui": "fullscreen"
