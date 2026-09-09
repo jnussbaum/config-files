@@ -61,6 +61,7 @@ Remember: Quality tools are guardrails that help you, not barriers that block yo
 - Before exploring a codebase or starting work, pull in the latest changes from origin.
 - Commit automatically once work is complete and verified — do not wait to be asked.
 - If on the default branch (`main`/`master`), create a branch first; never commit directly to it.
+  - Exception: https://github.com/jnussbaum/config-files
 - Never push unless I explicitly ask.
 - When I tell you to open a PR, always assign it to me (https://github.com/jnussbaum).
 - When writing PR descriptions or inline code comments, never focus on commit history, but only focus on actual code/diff.
