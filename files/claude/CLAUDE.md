@@ -75,6 +75,8 @@ Whenever you work on a subject which involves one of the below, you must absolut
 - **[Python](tech-preferences/python.md)** — linters, coding style, architectural preferences
 - **[Git](tech-preferences/git.md)** — conditionals and stack-specific exceptions
 - **[Markdown](tech-preferences/markdown.md)** — how I'd like markdown to be formatted
+- **[Claude Code components](tech-preferences/claude-code-components.md)** —
+  goals over step-by-step scripts when writing skills, agents, commands, and hooks
 - **[DaSCH import-script repos](tech-preferences/dasch-import-scripts.md)** — 
   Applies to repos whose directory name matches `[A-Z0-9]{4}-.+-scripts` (e.g. `085F-street-art-scripts`).
   Whenever you work in such a repo, you must absolutely read this document.
