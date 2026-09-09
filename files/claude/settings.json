@@ -216,7 +216,7 @@
       "docker *"
     ],
     "filesystem": {
-      "allowWrite": ["/opt/homebrew", "~/.cache/nix", "~/Library/Caches/Homebrew", "~/repos"] 
+      "allowWrite": ["/opt/homebrew", "~/.cache/nix", "~/.cache/uv", "~/Library/Caches/Homebrew", "~/repos"] 
     }
   },
   "effortLevel": "xhigh",

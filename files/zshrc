@@ -171,7 +171,11 @@ python_venv
 ########
 # https://github.com/ajeetdsouza/zoxide
 function cd() {
-    __zoxide_z "$@"
+    if [[ -o interactive ]]; then
+        __zoxide_z "$@"
+    else
+        builtin cd "$@"
+    fi
 }
 
 function cdi() {
