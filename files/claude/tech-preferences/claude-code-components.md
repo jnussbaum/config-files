@@ -69,6 +69,28 @@ A rigid format is still the right call when something else parses it:
 - Strong: Emit this exact template. `eng:skill-reviewing` merges reports by matching
   the `### Critical` heading, so a renamed heading gets silently dropped.
 
+## Autonomy
+
+Applies to a component that acts on its own — an agent, or a command that
+drives one.
+
+- Let it run to completion on its own by default. The value of an agent is
+  unattended work: the human sets the task and reviews the result. A component
+  that stops to confirm every step spends the attention it was built to save.
+- Keep an approval gate only for an action that is hard to reverse — a
+  force-push, a destructive delete, a public post. Make it optional and narrow.
+  It never becomes the only way to run, and it never blocks the autonomous path
+  for the rest.
+
+## Controls
+
+The shape of an argument that steers a component's behavior — separate from
+autonomy, and from what the behavior does.
+
+- Read a stated preference from what the user typed, in plain words, not only
+  from a rigid flag. A flag is one shorthand: a model reads "don't decide, ask
+  me" as reliably as a `--gated` flag.
+
 ## Known conflicts
 
 `plugin-dev:skill-reviewer` requires step-by-step process sections in agent bodies.
