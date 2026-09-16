@@ -195,7 +195,8 @@
     "rdu@dasch-claude-plugins": true,
     "misc@dasch-claude-plugins": true,
     "plugin-dev@claude-code-plugins": true,
-    "warp@claude-code-warp": true
+    "warp@claude-code-warp": true,
+    "dune@dasch-claude-plugins": true
   },
   "extraKnownMarketplaces": {
     "claude-code-warp": {
@@ -208,16 +209,26 @@
   "outputStyle": "conciseness-and-STE100",
   "sandbox": {
     "enabled": true,
+    "filesystem": {
+      "allowWrite": [
+        "/opt/homebrew",
+        "~/.cache/nix",
+        "~/.cache/uv",
+        "~/Library/Caches/Homebrew",
+        "~/repos"
+      ]
+    },
     "excludedCommands": [
       "gh *",
       "rtk gh *",
       "git *",
       "rtk git *",
-      "docker *"
-    ],
-    "filesystem": {
-      "allowWrite": ["/opt/homebrew", "~/.cache/nix", "~/.cache/uv", "~/Library/Caches/Homebrew", "~/repos"] 
-    }
+      "docker *",
+      "rg *",
+      "rtk rg *",
+      "grep *",
+      "rtk grep *"
+    ]
   },
   "effortLevel": "xhigh",
   "tui": "fullscreen"
