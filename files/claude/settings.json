@@ -60,7 +60,6 @@
       "/Users/nussbaum/.claude/plans"
     ]
   },
-  "model": "claude-opus-4-8[1m]",
   "skillOverrides": {
     "find-skills": "user-invocable-only",
     "grill-with-docs": "user-invocable-only",
@@ -209,6 +208,12 @@
   "outputStyle": "conciseness-and-STE100",
   "sandbox": {
     "enabled": true,
+    "network": {
+      "allowedDomains": [
+        "github.com"
+      ],
+      "allowLocalBinding": true
+    },
     "filesystem": {
       "allowWrite": [
         "/opt/homebrew",
