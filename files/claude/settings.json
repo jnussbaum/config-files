@@ -223,6 +223,9 @@
         "~/.cache/uv",
         "~/Library/Caches/Homebrew",
         "~/repos"
+      ],
+      "allowRead": [
+        "~/.ssh/*.pub"
       ]
     },
     "excludedCommands": [
