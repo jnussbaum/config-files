@@ -48,7 +48,8 @@
       "Bash(just ruff-format:*)",
       "Bash(just mypy:*)",
       "WebSearch",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:*.github.com)",
+      "WebFetch(domain:api.github.com)"
     ],
     "deny": [
       "Edit(**/.claude/settings.json)",
@@ -197,13 +198,20 @@
     "misc@dasch-claude-plugins": true,
     "plugin-dev@claude-code-plugins": true,
     "warp@claude-code-warp": true,
-    "dune@dasch-claude-plugins": true
+    "dune@dasch-claude-plugins": true,
+    "token-weather@claude-code-playground-mods": true
   },
   "extraKnownMarketplaces": {
     "claude-code-warp": {
       "source": {
         "source": "github",
         "repo": "warpdotdev/claude-code-warp"
+      }
+    },
+    "claude-code-playground-mods": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/nussbaum/.claude/plugins/marketplaces/claude-code-playground/claude-code/mods"
       }
     }
   },
@@ -212,7 +220,8 @@
     "enabled": true,
     "network": {
       "allowedDomains": [
-        "github.com"
+        "*.github.com",
+        "api.github.com"
       ],
       "allowLocalBinding": true
     },
@@ -241,5 +250,6 @@
     ]
   },
   "effortLevel": "xhigh",
-  "tui": "fullscreen"
+  "tui": "fullscreen",
+  "skipWorkflowUsageWarning": true
 }
